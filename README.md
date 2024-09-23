@@ -2,14 +2,14 @@
 This repository contains the [ROS](https://www.ros.org/) Package for the given task.
 
 ## Setting up
-- Clone the repository and place the package folder **amr_order_optimizer** inside the **src** of your **workspace**
-- Build the package inside the workspace directory using `colcon build --packages-select amr_order_optimizer`
-- Source the development environment after building the package `source install/setup.bash`
-- After building the package, run the node using launch file and input argument. It directly assigns the path to a directory containing two subdirectories **order** and **configuration**.
+- Clone the repository and place the package folder **amr_order_optimizer** and **custom_msg** inside the **src** of your **workspace**.
+- Build the packages inside the workspace directory using `colcon build --packages-select amr_order_optimizer custom_msg`.
+- Source the development environment after building the packages `source install/setup.bash`
+- After sourcing, run the node using launch file and input argument. The command below launches the node and directly assigns the path to a directory containing two subdirectories **orders** and **configuration**.
 ```
 ros2 launch amr_order_optimizer order_optimizer_launch.py directory:=/path/to/directory/containing/folders
 ```
-- In the another terminal, publish the order id and description to the topic /nextOrder in the custom message format as shown.
+- In the another terminal, publish order id and description to the topic */nextOrder* in the custom message format as shown.
 ```
 ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200028, description: 'order1'}"
 ```
@@ -29,15 +29,25 @@ ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200028, descr
 
 - Now, in case of second order, the robot starts from previous destination and reaches the current goal through intermediary points determining the goemetrically shortest path. Example input command:
 ```
-ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200034, description: 'order2'}"
+ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1400002, description: 'order2'}"
 ```
 Output:
 ```
-[OrderOptimizer-1] Working on order 1200034 (order2)
+[OrderOptimizer-1] Working on order 1400002 (order2)
 [OrderOptimizer-1] Starting from: (935.518, 469.63)
-[OrderOptimizer-1] Fetching part 'Part A' for product ' 633' at (791.863, 732.232)
-[OrderOptimizer-1] Fetching part 'Part B' for product ' 633' at (550.099, 655.423)
-[OrderOptimizer-1] Delivering to destination x: 175.147, y: 534.861
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 266' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 825' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 282' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 867' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 620' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part B' for product ' 266' at (550.099, 655.423)
+[OrderOptimizer-1] Fetching part 'Part B' for product ' 825' at (550.099, 655.423)
+[OrderOptimizer-1] Fetching part 'Part B' for product ' 867' at (550.099, 655.423)
+[OrderOptimizer-1] Fetching part 'Part C' for product ' 266' at (281.394, 68.3963)
+[OrderOptimizer-1] Fetching part 'Part C' for product ' 825' at (281.394, 68.3963)
+[OrderOptimizer-1] Fetching part 'Part C' for product ' 282' at (281.394, 68.3963)
+[OrderOptimizer-1] Fetching part 'Part C' for product ' 867' at (281.394, 68.3963)
+[OrderOptimizer-1] Delivering to destination x: 202.387, y: 35.1363
 ```
 
 ## RViz
