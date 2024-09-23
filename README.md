@@ -1,5 +1,5 @@
 # amr-order-optimizer
-This repository contains the [ROS](https://www.ros.org/) package for the given task made using the current LTS Versions 22.04 and [Humble](https://docs.ros.org/en/humble/index.html).
+This repository contains the [ROS](https://www.ros.org/) packages for the given task made using the current LTS Versions 22.04 and [Humble](https://docs.ros.org/en/humble/index.html).
 
 ## Setting up
 - Clone the repository and place the package folders **amr_order_optimizer** and **custom_msg** inside the **src** of your **workspace**.

@@ -308,6 +308,7 @@ void OrderOptimizer::create_marker_array(const std::unordered_map<int, std::vect
 
     // Publish the marker array
     marker_array_publisher->publish(marker_array);
+    marker_array.markers.clear();
 }
 
 
