@@ -14,7 +14,7 @@ ros2 launch amr_order_optimizer order_optimizer_launch.py directory:=/path/to/di
 ```
 ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200028, description: 'order1'}"
 ```
-- Example output: 
+- Example output for the geometrically shortest path: 
 ```
 [OrderOptimizer-1] Working on order 1200028 (order1)
 [OrderOptimizer-1] Starting from: (0, 0)
@@ -27,3 +27,17 @@ ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200028, descr
 [OrderOptimizer-1] Fetching part 'Part A' for product ' 354' at (791.863, 732.232)
 [OrderOptimizer-1] Delivering to destination x: 935.518, y: 469.63
 ```
+
+- Now, in case of second order, the robot starts from previous destination and reaches the current goal through intermediary points determining the goemetrically shortest path. Example input command:
+```
+ros2 topic pub --once /nextOrder custom_msg/msg/Order "{order_id: 1200034, description: 'order2'}"
+```
+Output:
+```
+[OrderOptimizer-1] Working on order 1200034 (order2)
+[OrderOptimizer-1] Starting from: (935.518, 469.63)
+[OrderOptimizer-1] Fetching part 'Part A' for product ' 633' at (791.863, 732.232)
+[OrderOptimizer-1] Fetching part 'Part B' for product ' 633' at (550.099, 655.423)
+[OrderOptimizer-1] Delivering to destination x: 175.147, y: 534.861
+```
+
