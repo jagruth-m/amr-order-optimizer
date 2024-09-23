@@ -2,8 +2,7 @@
 This repository contains the [ROS](https://www.ros.org/) Package for the given task.
 
 ## Setting up
-- Clone the repository
-- Place the package folder **amr_order_optimizer** inside the **src** of your **workspace**
+- Clone the repository and place the package folder **amr_order_optimizer** inside the **src** of your **workspace**
 - Build the package inside the workspace directory using `colcon build --packages-select amr_order_optimizer`
 - Source the development environment after building the package `source install/setup.bash`
 - After building the package, run the node using launch file and input argument. It directly assigns the path to a directory containing two subdirectories **order** and **configuration**.
@@ -49,5 +48,6 @@ Output:
 - The node publishes the marker array *visualization_msgs/MarkerArray* with AMR position and pickup location of the parts, and these locations can be visualized in RViz.
 
 ## Testing
-- Two tests with testsuite named **OrderOptimizerTest** are encoded in the **test** folder. Tests can be run using `ros2 run amr_order_optimizer test_order_optimizer`
+- [Googletest](https://github.com/google/googletest) is used for testing.
+- Two tests with testsuite named **OrderOptimizerTest** are encoded in the **test** folder. Tests can be run using `ros2 run amr_order_optimizer test_order_optimizer`.
 
