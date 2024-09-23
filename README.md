@@ -41,3 +41,13 @@ Output:
 [OrderOptimizer-1] Delivering to destination x: 175.147, y: 534.861
 ```
 
+## RViz
+- The node publishes a marker array of the message type *visualization_msgs/MarkerArray* on the topic */order_path* where the starting AMR position is indicated with a marker of type ‘CUBE’ while each part pickup location should be visualized with a marker of type ‘CYLINDER’.
+
+- Open **RViz**, click on Add to add **MarkerArray** by topic */order_path*.
+- Now, publish the custom message with order id and description in to the topic */nextOrder*
+- The node publishes the marker array *visualization_msgs/MarkerArray* with AMR position and pickup location of the parts, and these locations can be visualized in RViz.
+
+## Testing
+- Two tests with testsuite named **OrderOptimizerTest** are encoded in the **test** folder. Tests can be run using `ros2 run amr_order_optimizer test_order_optimizer`
+
