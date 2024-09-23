@@ -17,28 +17,6 @@ find_package(visualization_msgs REQUIRED)
 
 include_directories(include)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  find_package(ament_cmake_gtest REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  #set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  #set(ament_cmake_cpplint_FOUND TRUE)
-  #ament_lint_auto_find_test_dependencies()
-
-  ament_add_gtest(test_order_optimizer test/test_order_optimizer.cpp)
-  # target_include_directories(test_order_optimizer PUBLIC
-  #   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  #   $<INSTALL_INTERFACE:include>
-  # )
-  #target_link_libraries(${PROJECT_NAME}_tutorial_test name_of_local_library)
-  ament_target_dependencies(test_order_optimizer rclcpp std_msgs custom_msg geometry_msgs yaml-cpp visualization_msgs)
-  target_link_libraries(test_order_optimizer yaml-cpp)
-endif()
-
 # Declaring C++ executables
 add_executable(OrderOptimizer src/order_optimizer.cpp)
 ament_target_dependencies(OrderOptimizer rclcpp std_msgs custom_msg geometry_msgs yaml-cpp visualization_msgs)
@@ -47,7 +25,6 @@ target_link_libraries(OrderOptimizer yaml-cpp)
 # Install the executable
 install(TARGETS
   OrderOptimizer
-  test_order_optimizer
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
@@ -58,10 +35,21 @@ install(DIRECTORY
 
 # Install python files
 install(PROGRAMS
-  launch/order_optimizer_launch.py  # Python launch file here
+  launch/order_optimizer_launch.py 
   DESTINATION lib/${PROJECT_NAME}
 )
 
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  find_package(ament_cmake_gtest REQUIRED)
+  set(SOURCES src/order_optimizer.cpp)
+  add_library(optimizer_test SHARED ${SOURCES})
+  
+  ament_add_gtest(test_order_optimizer test/test_order_optimizer.cpp)
+  ament_target_dependencies(optimizer_test rclcpp std_msgs custom_msg geometry_msgs yaml-cpp visualization_msgs)
+  target_link_libraries(test_order_optimizer optimizer_test yaml-cpp)
+
+endif()
 
 
 ament_package()
