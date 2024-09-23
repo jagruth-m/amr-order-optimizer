@@ -49,5 +49,6 @@ Output:
 
 ## Testing
 - [Googletest](https://github.com/google/googletest) is used for testing.
-- Two tests with testsuite named **OrderOptimizerTest** are encoded in the **test** folder. Tests can be run using `ros2 run amr_order_optimizer test_order_optimizer`.
+- Before perfomring the tests, replace the default path to directory contains folders 'orders' and 'configuration' line:23 in *src/order_optimizer.cpp* and give the `this->declare_parameter<std::string>("directory", "/path/to/directory/containing/folders");` 
+- Two tests with testsuite named **OrderOptimizerTest** are encoded in the **test** folder. Tests can be run using `colcon test --packages-select amr_order_optimizer --event-handlers console_cohesion+`.
 
