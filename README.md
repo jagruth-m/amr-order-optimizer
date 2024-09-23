@@ -1,8 +1,8 @@
 # amr-order-optimizer
-This repository contains the [ROS](https://www.ros.org/) Package for the given task.
+This repository contains the [ROS](https://www.ros.org/) package for the given task made using the current LTS Versions 22.04 and [Humble](https://docs.ros.org/en/humble/index.html).
 
 ## Setting up
-- Clone the repository and place the package folder **amr_order_optimizer** and **custom_msg** inside the **src** of your **workspace**.
+- Clone the repository and place the package folders **amr_order_optimizer** and **custom_msg** inside the **src** of your **workspace**.
 - Build the packages inside the workspace directory using `colcon build --packages-select amr_order_optimizer custom_msg`.
 - Source the development environment after building the packages `source install/setup.bash`
 - After sourcing, run the node using launch file and input argument. The command below launches the node and directly assigns the path to a directory containing two subdirectories **orders** and **configuration**.
